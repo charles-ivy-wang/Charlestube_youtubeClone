@@ -3,6 +3,48 @@ nav {
   justify-content: space-between;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background: #fff;
-  top: 0;
+  position: sticky;
+  top: 0; /* top allows the nav bar to stick to the top*/
   z-index: 10;
 }
+
+.nav-left .menu-icon {
+  width: 30px;
+  margin-right: 25px;
+}
+
+.nav-left .logo {
+  width: 130px;
+}
+
+.nav-middle .searchBar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin-right: 15px;
+  padding: 8px 12px;
+  border-radius: 25px;
+}
+
+.nav-middle .searchBar input {
+  flex: 1;
+  width: 400px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.nav-middle .searchBar img {
+  width: 16px;
+}
+
+.nav-right img {
+  width: 25px;
+  margin-right: 25px;
+}
+
+.nav-right .jack{
+  width: 35px;
+  border-radius: 50%;
+}
+
