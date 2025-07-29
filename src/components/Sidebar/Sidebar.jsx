@@ -5,7 +5,7 @@ import { assets } from "../../assets/assets";
 const Sidebar = () => {
   return (
     <div className='sidebar'>
-      <div className="sortcut-links">
+      <div className="shortcut-links">
         <div className="side-link">
           <img src={assets.home} alt="" />
           <p>Home</p>
