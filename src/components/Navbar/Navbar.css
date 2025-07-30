@@ -4,6 +4,7 @@ nav {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background: #fff;
   position: sticky;
+  /* position: fixed; */
   top: 0; /* top allows the nav bar to stick to the top, cant scroll more*/
   z-index: 10;
 }
