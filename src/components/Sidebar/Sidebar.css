@@ -58,3 +58,8 @@
   width: 50%;
 }
 
+/* the red line under the img when click*/
+.side-link.active img { 
+  padding-bottom: 2px;
+  border-bottom: 3px solid red;
+}
