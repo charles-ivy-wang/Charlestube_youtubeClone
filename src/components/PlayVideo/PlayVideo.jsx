@@ -27,6 +27,13 @@ const PlayVideo = () => {
         </div>
         <button>Subscribe</button>
       </div>
+
+      <div className='vid-description'>
+        <p>Channel that makes learning easy</p>
+        <p>Subscribe GreatStack to Watch More Tutorials on web developement</p>
+        <hr />
+        <h4>130 Comments</h4>
+      </div>
     
     </div>
   )
