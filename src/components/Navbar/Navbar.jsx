@@ -1,6 +1,7 @@
 import React, { Profiler } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ setSidebar }) => {
   return (
@@ -12,7 +13,9 @@ const Navbar = ({ setSidebar }) => {
           src={assets.menu}
           alt=""
         />
-        <img className="logo" src={assets.logo} alt="" />
+        <Link to='/'>
+          <img className="logo" src={assets.logo} alt="" />
+        </Link>
       </div>
 
       <div className="nav-middle flex-div">

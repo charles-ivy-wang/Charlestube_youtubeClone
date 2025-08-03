@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./PlayVideo.css";
 import { assets } from "../../assets/assets";
+import { API_KEY, numbConverter } from "../../data";
+import moment from "moment";
 
-const PlayVideo = () => {
+const PlayVideo = ({ videoId }) => {
+  const [apiData, setApiData] = useState(null);
+
+  const fetchVideoData = async () => {
+    const videoDetails_url =
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
+    await fetch(videoDetails_url)
+      .then((response) => response.json())
+      .then((data) => setApiData(data.items[0]));
+  };
+
+  useEffect(()=>{
+    fetchVideoData();
+  },[videoId])
+
   return (
     <div className="play-video">
-      <video src={assets.video} controls autoPlay muted></video>
-      <h3>Best Youtube Channel to Learn Web Developement</h3>
+      {/* <video src={assets.video} controls autoPlay muted></video> */}
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+      <h3>{apiData?apiData.snippet.title:"Title Here"}</h3>
       <div className="play-video-info">
-        <p>1525 Views &bull; 2 days ago</p>
+        <p>{apiData?numbConverter(apiData.statistics.viewCount):"Placeholder"} &bull; {apiData?moment(apiData.snippet.publishedAt).fromNow():"placeholder"}</p>
         <div>
           <span>
-            <img src={assets.like} alt="" /> 125
+            <img src={assets.like} alt="" /> {apiData?numbConverter(apiData.statistics.likeCount):"placeholder"}
           </span>
           <span>
             <img src={assets.dislike} alt="" /> 2
@@ -37,8 +60,7 @@ const PlayVideo = () => {
       </div>
 
       <div className="vid-description">
-        <p>Channel that makes learning easy</p>
-        <p>Subscribe GreatStack to Watch More Tutorials on web developement</p>
+        <p>{apiData?apiData.snippet.description:"Placeholder"}</p>
         <hr />
         <h4>130 Comments</h4>
         <div className="comment">
