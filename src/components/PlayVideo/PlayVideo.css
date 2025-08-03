@@ -101,6 +101,11 @@
   display: flex;
   align-items: flex-start;
   margin: 20px 0;
+  flex-direction: row;
+}
+
+.vid-description .comment-description {
+  display: flex;
   flex-direction: column;
 }
 

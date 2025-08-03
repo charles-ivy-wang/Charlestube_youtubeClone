@@ -43,40 +43,58 @@ const PlayVideo = () => {
         <h4>130 Comments</h4>
         <div className="comment">
           <img src={assets.user_profile} alt="" />
-          <h3>
-            Jack Nicholson <span>1 day ago</span>
-          </h3>
-          <p>A global computer network providing a variety of information and communication facilities, consisting od interconnected networks using standardized communication protocols.</p>
-          <div className="comment-action">
-            <img src={assets.like} alt="" />
-            <span>244</span>
-            <img src={assets.dislike} alt="" />
-          </div>
-        </div>
-        
-        <div className="comment">
-          <img src={assets.user_profile} alt="" />
-          <h3>
-            Jack Nicholson <span>1 day ago</span>
-          </h3>
-          <p>A global computer network providing a variety of information and communication facilities, consisting od interconnected networks using standardized communication protocols.</p>
-          <div className="comment-action">
-            <img src={assets.like} alt="" />
-            <span>244</span>
-            <img src={assets.dislike} alt="" />
+          <div className="comment-description">
+            <h3>
+              Jack Nicholson <span>1 day ago</span>
+            </h3>
+            <p>
+              A global computer network providing a variety of information and
+              communication facilities, consisting od interconnected networks
+              using standardized communication protocols.
+            </p>
+            <div className="comment-action">
+              <img src={assets.like} alt="" />
+              <span>244</span>
+              <img src={assets.dislike} alt="" />
+            </div>
           </div>
         </div>
 
         <div className="comment">
           <img src={assets.user_profile} alt="" />
-          <h3>
-            Jack Nicholson <span>1 day ago</span>
-          </h3>
-          <p>A global computer network providing a variety of information and communication facilities, consisting od interconnected networks using standardized communication protocols.</p>
-          <div className="comment-action">
-            <img src={assets.like} alt="" />
-            <span>244</span>
-            <img src={assets.dislike} alt="" />
+          <div className="comment-description">
+            <h3>
+              Jack Nicholson <span>1 day ago</span>
+            </h3>
+            <p>
+              A global computer network providing a variety of information and
+              communication facilities, consisting od interconnected networks
+              using standardized communication protocols.
+            </p>
+            <div className="comment-action">
+              <img src={assets.like} alt="" />
+              <span>244</span>
+              <img src={assets.dislike} alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div className="comment">
+          <img src={assets.user_profile} alt="" />
+          <div className="comment-description">
+            <h3>
+              Jack Nicholson <span>1 day ago</span>
+            </h3>
+            <p>
+              A global computer network providing a variety of information and
+              communication facilities, consisting od interconnected networks
+              using standardized communication protocols.
+            </p>
+            <div className="comment-action">
+              <img src={assets.like} alt="" />
+              <span>244</span>
+              <img src={assets.dislike} alt="" />
+            </div>
           </div>
         </div>
       </div>
