@@ -46,7 +46,7 @@ const PlayVideo = () => {
           <h3>
             Jack Nicholson <span>1 day ago</span>
           </h3>
-          <p>Placeholder</p>
+          <p>A global computer network providing a variety of information and communication facilities, consisting od interconnected networks using standardized communication protocols.</p>
           <div className="comment-action">
             <img src={assets.like} alt="" />
             <span>244</span>
@@ -59,7 +59,7 @@ const PlayVideo = () => {
           <h3>
             Jack Nicholson <span>1 day ago</span>
           </h3>
-          <p>Placeholder</p>
+          <p>A global computer network providing a variety of information and communication facilities, consisting od interconnected networks using standardized communication protocols.</p>
           <div className="comment-action">
             <img src={assets.like} alt="" />
             <span>244</span>
@@ -72,7 +72,7 @@ const PlayVideo = () => {
           <h3>
             Jack Nicholson <span>1 day ago</span>
           </h3>
-          <p>Placeholder</p>
+          <p>A global computer network providing a variety of information and communication facilities, consisting od interconnected networks using standardized communication protocols.</p>
           <div className="comment-action">
             <img src={assets.like} alt="" />
             <span>244</span>
