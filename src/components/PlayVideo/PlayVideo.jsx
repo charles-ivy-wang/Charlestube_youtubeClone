@@ -3,8 +3,11 @@ import "./PlayVideo.css";
 import { assets } from "../../assets/assets";
 import { API_KEY, numbConverter } from "../../data";
 import moment from "moment";
+import { useParams } from "react-router-dom";
 
-const PlayVideo = ({ videoId }) => {
+const PlayVideo = () => {
+  const { videoId } = useParams();
+
   const [apiData, setApiData] = useState(null);
   const [channelData, setChannelData] = useState(null);
   const [commentData, setCommentData] = useState(null);
