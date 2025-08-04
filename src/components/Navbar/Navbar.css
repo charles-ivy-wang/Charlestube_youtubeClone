@@ -44,8 +44,28 @@ nav {
   margin-right: 25px;
 }
 
-.nav-right .jack{
+.nav-right .jack {
   width: 35px;
   border-radius: 50%;
 }
 
+@media (max-width: 900px) {
+  .menu-icon {
+    display: none;
+  }
+  .nav-right img {
+    display: none;
+  }
+  .nav-right .jack {
+    display: block;
+    width: 30px;
+  }
+
+  .logo {
+    width: 90px;
+  }
+
+  .nav-middle .searchBar input {
+    width: 100px;
+  }
+}

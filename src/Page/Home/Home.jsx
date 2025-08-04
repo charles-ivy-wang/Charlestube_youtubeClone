@@ -3,6 +3,7 @@ import "./Home.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Feed from "../../components/Feed/Feed";
 import { assets } from "../../assets/assets";
+import PlayVideo from "../../components/PlayVideo/PlayVideo";
 
 const Home = ({ sidebar }) => {
   
