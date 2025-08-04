@@ -6,18 +6,37 @@ import moment from "moment";
 
 const PlayVideo = ({ videoId }) => {
   const [apiData, setApiData] = useState(null);
+  const [channelData, setChannelData] = useState(null);
+  const [commentData, setCommentData] = useState(null);
 
   const fetchVideoData = async () => {
-    const videoDetails_url =
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
+    const videoDetails_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
     await fetch(videoDetails_url)
       .then((response) => response.json())
       .then((data) => setApiData(data.items[0]));
   };
 
-  useEffect(()=>{
+  const fetchOtherData = async () => {
+    const channelDetails_url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData.snippet.channelId}&key=${API_KEY}`;
+    await fetch(channelDetails_url)
+      .then((response) => response.json())
+      .then((data) => setChannelData(data.items[0]));
+
+    const commentDetails_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${API_KEY}`;
+    await fetch(commentDetails_url)
+      .then((response) => response.json())
+      .then((data) => setCommentData(data.items));
+  };
+
+  useEffect(() => {
     fetchVideoData();
-  },[videoId])
+  }, [videoId]);
+
+  useEffect(() => {
+    if (apiData) {
+      fetchOtherData();
+    }
+  }, [apiData]);
 
   return (
     <div className="play-video">
@@ -29,12 +48,23 @@ const PlayVideo = ({ videoId }) => {
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
       ></iframe>
-      <h3>{apiData?apiData.snippet.title:"Title Here"}</h3>
+      <h3>{apiData ? apiData.snippet.title : "Title Here"}</h3>
       <div className="play-video-info">
-        <p>{apiData?numbConverter(apiData.statistics.viewCount):"Placeholder"} &bull; {apiData?moment(apiData.snippet.publishedAt).fromNow():"placeholder"}</p>
+        <p>
+          {apiData
+            ? numbConverter(apiData.statistics.viewCount)
+            : "Placeholder"}{" "}
+          &bull;{" "}
+          {apiData
+            ? moment(apiData.snippet.publishedAt).fromNow()
+            : "placeholder"}
+        </p>
         <div>
           <span>
-            <img src={assets.like} alt="" /> {apiData?numbConverter(apiData.statistics.likeCount):"placeholder"}
+            <img src={assets.like} alt="" />{" "}
+            {apiData
+              ? numbConverter(apiData.statistics.likeCount)
+              : "placeholder"}
           </span>
           <span>
             <img src={assets.dislike} alt="" /> 2
@@ -51,74 +81,54 @@ const PlayVideo = ({ videoId }) => {
       <hr />
 
       <div className="publisher">
-        <img src={assets.jack} alt="" />
+        <img
+          src={channelData ? channelData.snippet.thumbnails.default.url : ""}
+          alt=""
+        />
         <div>
-          <p>GreatStack</p>
-          <span>1M Subscribers</span>
+          <p>{apiData ? apiData.snippet.channelTitle : ""}</p>
+          <span>
+            {channelData
+              ? numbConverter(channelData.statistics.subscriberCount)
+              : "1M"}{" "}
+            Subscribers
+          </span>
         </div>
         <button>Subscribe</button>
       </div>
 
       <div className="vid-description">
-        <p>{apiData?apiData.snippet.description:"Placeholder"}</p>
+        <p>
+          {apiData ? apiData.snippet.description.slice(0, 250) : "Placeholder"}
+        </p>
         <hr />
-        <h4>130 Comments</h4>
-        <div className="comment">
-          <img src={assets.user_profile} alt="" />
-          <div className="comment-description">
-            <h3>
-              Jack Nicholson <span>1 day ago</span>
-            </h3>
-            <p>
-              A global computer network providing a variety of information and
-              communication facilities, consisting od interconnected networks
-              using standardized communication protocols.
-            </p>
-            <div className="comment-action">
-              <img src={assets.like} alt="" />
-              <span>244</span>
-              <img src={assets.dislike} alt="" />
-            </div>
-          </div>
-        </div>
+        <h4>
+          {apiData ? numbConverter(apiData.statistics.commentCount) : 1}{" "}
+          Comments
+        </h4>
 
-        <div className="comment">
-          <img src={assets.user_profile} alt="" />
-          <div className="comment-description">
-            <h3>
-              Jack Nicholson <span>1 day ago</span>
-            </h3>
-            <p>
-              A global computer network providing a variety of information and
-              communication facilities, consisting od interconnected networks
-              using standardized communication protocols.
-            </p>
-            <div className="comment-action">
-              <img src={assets.like} alt="" />
-              <span>244</span>
-              <img src={assets.dislike} alt="" />
-            </div>
-          </div>
-        </div>
+        {/* Array.isarray is to ensure that the commentData is NOT null, since there is an awaite time */}
+        {Array.isArray(commentData) &&
+          commentData.map((item, index) => {
+            const eachComment = item.snippet.topLevelComment.snippet;
 
-        <div className="comment">
-          <img src={assets.user_profile} alt="" />
-          <div className="comment-description">
-            <h3>
-              Jack Nicholson <span>1 day ago</span>
-            </h3>
-            <p>
-              A global computer network providing a variety of information and
-              communication facilities, consisting od interconnected networks
-              using standardized communication protocols.
-            </p>
-            <div className="comment-action">
-              <img src={assets.like} alt="" />
-              <span>244</span>
-              <img src={assets.dislike} alt="" />
-            </div>
-          </div>
-        </div>
+            return (
+              <div className="comment">
+                <img src={eachComment.authorProfileImageUrl} alt="" />
+                <div className="comment-description">
+                  <h3>
+                    {eachComment.authorDisplayName} <span>1 day ago</span>
+                  </h3>
+                  <p>{eachComment.textDisplay}</p>
+                  <div className="comment-action">
+                    <img src={assets.like} alt="" />
+                    <span>{numbConverter(eachComment.likeCount)}</span>
+                    <img src={assets.dislike} alt="" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
