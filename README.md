@@ -1,5 +1,5 @@
 # YouTube Clone
-This is a YouTube clone project built to practice and strengthen core React concepts such as data fetching, React Router, dynamic UI updates using state and props, and component-based architecture. The project was completed as a way to deepen understanding of API-driven applications, complex layout styling, and interactive user interface design in React. A detailed design document is coming soon!
+This is a YouTube clone project built to practice and strengthen core React concepts such as data fetching, React Router, dynamic UI updates using state and props, and component-based architecture. The project was completed as a way to deepen understanding of API-driven applications, complex layout styling, and interactive user interface design in React. Please read [design_doc](Youtube_Clone_Design_Document.md) if interested in building one of your own! 
 
 ## 🚀 Features
 - YouTube-style homepage with dynamic video data fetched from the YouTube Data API
